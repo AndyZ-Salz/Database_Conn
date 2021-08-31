@@ -12,28 +12,25 @@
 # History:
 # 2021/8/27: Create
 import link_auth_template
+from DB_connect.DB_conn import DatabaseConnect
 
 Auth = link_auth_template.DB_AUTH
+print(Auth)
 
 if __name__ == '__main__':
-    import psycopg2
-
     # Connect to an existing database
-    print(Auth)
-    conn = psycopg2.connect(host=Auth['host'], port=Auth['port'], dbname=Auth['dbname'], user=Auth['user'],
-                            password=Auth['password'])
-    # conn = psycopg2.connect(host="localhost", port="5432", dbname="test", user="postgres", password="sqlpass")
-
     # Open a cursor to perform database operations
-    cur = conn.cursor()
+
+    # link = DatabaseConnect("host=localhost port=5432 dbname=test user=postgres password=sqlpass")
+    # link = DatabaseConnect(host="localhost", port="5432", dbname="test", user="postgres", password="sqlpass")
+    link = DatabaseConnect.init_by_auth(Auth)
+
+    # open Log
+    link.set_log(True)
 
     # Query the database and obtain data as Python objects
-    cur.execute("SELECT * FROM ec_type_g;")
-    print(cur.fetchall())
+    print(link.select('*', 'ec_type_d', "type_g = '电容'"))
 
     # Make the changes to the database persistent
-    conn.commit()
-
     # Close communication with the database
-    cur.close()
-    conn.close()
+    del link
