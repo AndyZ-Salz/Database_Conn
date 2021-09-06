@@ -51,5 +51,17 @@ def select_sql(what, table: str, where=None):
     return SQL_query
 
 
+def insert_sql():
+    pass
+
+
+def update_sql():
+    pass
+
+
+def delete_sql():
+    pass
+
+
 if __name__ == '__main__':
     print(select_sql('*', 'ec_type_d', "type_g = '电容'"))

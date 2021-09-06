@@ -92,6 +92,12 @@ if __name__ == '__main__':
     # print(link.cur_execute("SELECT * FROM ec_type_d WHERE type_g = %s",['电容']))
 
     # DM select
-    print(link.select('type_d', 'ec_type_d',"type_g = '电容'"))
+    print(link.select('type_d', 'ec_type_d', "type_g = '电容'"))
     print(link.select('type_g', 'ec_type_d'))
-    print(link.select('*', 'ec_type_d',"type_g = '电容'"))
+    print(link.select('*', 'ec_type_d', "type_g = '电容'"))
+
+    # DM insert
+
+    # DM update
+
+    # DM delete
